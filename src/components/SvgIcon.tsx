@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
 export default function SvgIcon(props: {
-  name: string
+  name: string,
+  className?: string
 }) {
   const [eId, setEId] = useState("");
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function SvgIcon(props: {
     }
   }, [props.name]);
   return (
-    <svg>
+    <svg className={props.className}>
       <use href={eId} />
     </svg>
   );
