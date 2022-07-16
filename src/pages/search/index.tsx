@@ -6,7 +6,10 @@ const keys = ["song", "singer", "mv", "album"];
 
 export default function Search() {
   const [searchVal, setSearchVal] = useState("林俊杰");
-  const [result, setResult] = useState({});
+  const [result, setResult] = useState<{
+    // eslint-disable-next-line no-unused-vars
+    [k in typeof keys[number]] : any
+  }>({});
   
   const [,] = useDebounce(() => {
     axios({
@@ -41,7 +44,7 @@ export default function Search() {
             <div key={k}>
               <p className="text-lg bg-slate-300">{result[k]?.name}:</p>
               {
-                result[k]?.itemlist.map(item => (
+                result[k]?.itemlist.map((item: any) => (
                   <div key={item.id} className="flex border-solid border-b border-slate-400 items-center py-1">
                     {item.pic ? (<img className="w-12 h-12" src={item.pic}/>) : null}
                     {item.name}
