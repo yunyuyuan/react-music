@@ -1,20 +1,22 @@
-import { NavLink } from "react-router-dom";
 import "./index.scss";
+
+import { NavLink } from "react-router-dom";
+
 import SvgIcon from "../SvgIcon";
 
-type MenuItem = {category: string, tabs: readonly {label: string, url: string, icon: string}[]};
+type MenuItem = { category: string, tabs: readonly { label: string, url: string, icon: string }[] };
 const menuItems: readonly MenuItem[] = [
   {
     category: "探索",
-    tabs:[
+    tabs: [
       {
         label: "推荐",
         url: "/recommend",
-        icon: "search"
-      },{
+        icon: "thumbup"
+      }, {
         label: "排行榜",
         url: "/top",
-        icon: "search"
+        icon: "rate"
       }
     ]
   },
@@ -22,14 +24,14 @@ const menuItems: readonly MenuItem[] = [
     category: "我的",
     tabs: [
       {
-        label: "红心",
+        label: "喜欢",
         url: "/like",
-        icon: "search"
-      },{
+        icon: "love"
+      }, {
         label: "最近",
         url: "/history",
-        icon: "search"
-      }   
+        icon: "history"
+      }
     ]
   },
   {
@@ -38,11 +40,11 @@ const menuItems: readonly MenuItem[] = [
       {
         label: "我的歌单",
         url: "/my-playlist",
-        icon: "search"
-      },{
+        icon: "album"
+      }, {
         label: "收藏歌单",
         url: "/like-playlist",
-        icon: "search"
+        icon: "album"
       }
     ]
   }
@@ -50,16 +52,19 @@ const menuItems: readonly MenuItem[] = [
 
 export default function SideBar() {
   return (
-    <nav className="rm-sidebar fixed h-full">
+    <nav className="rm-sidebar fixed h-full bg-white">
       {menuItems.map(item => (
-        <div key={item.category}>
-          <p>{item.category}</p>
+        <div key={item.category} className="">
+          <p className="text-base text-gray-400 ml-3 pt-3.5 pb-2.5">{item.category}</p>
           <ul>
             {item.tabs.map(tab => (
               <li key={tab.url}>
-                <NavLink className="flex items-center" to={tab.url}>
-                  {<SvgIcon className="aspect-square w-6" name={tab.icon}/>}
-                  <span className="text-sm">{tab.label}</span>
+                <NavLink 
+                  className={({ isActive }) => `c-transition flex items-center active:text-cyan-500 p-2.5
+                                              ${isActive ? " bg-[#74ced7] text-white" : ""}`} 
+                  to={tab.url}>
+                  <SvgIcon className="aspect-square w-5" name={tab.icon} />
+                  <span className="text-sm ml-2">{tab.label}</span>
                 </NavLink>
               </li>)
             )}

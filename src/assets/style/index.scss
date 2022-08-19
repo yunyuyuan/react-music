@@ -1,3 +1,5 @@
+/* stylelint-disable scss/at-rule-no-unknown */
+@import "./classes";
+@tailwind utilities;
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
