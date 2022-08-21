@@ -9,18 +9,19 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "react-app",
     "plugin:react/recommended",
-    "plugin:react/jsx-runtime"
+    "plugin:react/jsx-runtime",
+    "plugin:tailwindcss/recommended"
   ],
   parserOptions: {
     ecmaVersion: "latest",
     parser: "@typescript-eslint/parser",
     sourceType: "module"
   },
-  plugins: ["@typescript-eslint", "simple-import-sort"],
+  plugins: ["@typescript-eslint", "simple-import-sort", "tailwindcss"],
   rules: {
     quotes: ["error", "double"],
     semi: ["error", "always"],
-    indent: ["error", 2, { SwitchCase: 1 }],
+    indent: ["error", 2, { SwitchCase: 1 , ignoredNodes: ["JSXElement *", "JSXElement"] }],
     "object-curly-spacing": [1, "always"],
     "no-multi-spaces": ["error"],
     "no-unused-vars": [
@@ -29,7 +30,9 @@ module.exports = {
         vars: "all",
         args: "after-used",
         ignoreRestSiblings: false,
-        argsIgnorePattern: "^_"
+        argsIgnorePattern: "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
       }
     ],
 
@@ -38,5 +41,8 @@ module.exports = {
     "@typescript-eslint/no-non-null-assertion": 0,
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "react/jsx-indent": [1, 2],
+    "react-hooks/exhaustive-deps": 0,
+    "tailwindcss/no-custom-classname": 0
   }
 };

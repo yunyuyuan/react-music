@@ -1,0 +1,18 @@
+.rm-search {
+  >.head {
+    box-shadow: 0 0 10px #bfbfbf59;
+
+    &.active {
+      border-color: #7856ff;
+      box-shadow: 0 0 10px #bfbfbf59, 0 0 0 1px #7856ff;
+    }
+  }
+
+  table {
+    min-width: 800px;
+  }
+
+  tbody {
+    max-height: 90vh;
+  }
+}

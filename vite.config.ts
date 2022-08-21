@@ -1,7 +1,6 @@
 import react from "@vitejs/plugin-react";
 import fs from "fs";
 import path from "path";
-import type { Plugin } from "rollup";
 import { dataToEsm } from "rollup-pluginutils";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -28,7 +27,7 @@ export default defineConfig({
             };
           }
         }
-      } as Plugin]
+      }]
     }
   }
 });

@@ -1,6 +1,10 @@
 import "./index.scss";
 
+import { useAtom } from "jotai";
+import { useMemo } from "react";
 import { NavLink } from "react-router-dom";
+
+import { activeRoute } from "~/states";
 
 import SvgIcon from "../SvgIcon";
 
@@ -9,6 +13,11 @@ const menuItems: readonly MenuItem[] = [
   {
     category: "探索",
     tabs: [
+      {
+        label: "搜索",
+        url: "/search",
+        icon: "search"
+      }, 
       {
         label: "推荐",
         url: "/recommend",
@@ -51,20 +60,24 @@ const menuItems: readonly MenuItem[] = [
 ] as const;
 
 export default function SideBar() {
+  const [active,] = useAtom(activeRoute);
+  const activePath = useMemo(() => {
+    return active.replace(/^(\/[^/]*).*$/, "$1");
+  }, [active]);
   return (
     <nav className="rm-sidebar fixed h-full bg-white">
       {menuItems.map(item => (
         <div key={item.category} className="">
-          <p className="text-base text-gray-400 ml-3 pt-3.5 pb-2.5">{item.category}</p>
+          <p className="ml-3 pt-3.5 pb-2.5 text-base text-gray-400">{item.category}</p>
           <ul>
             {item.tabs.map(tab => (
-              <li key={tab.url}>
+              <li key={tab.url} className="px-1">
                 <NavLink 
-                  className={({ isActive }) => `c-transition flex items-center active:text-cyan-500 p-2.5
-                                              ${isActive ? " bg-[#74ced7] text-white" : ""}`} 
+                  className={`group rm-transition relative my-0.5 flex items-center rounded-xl py-2 pl-5 text-base [&:not(.active)]:hover:text-purple-700
+                    ${activePath===tab.url ? "text-white": ""}`} 
                   to={tab.url}>
-                  <SvgIcon className="aspect-square w-5" name={tab.icon} />
-                  <span className="text-sm ml-2">{tab.label}</span>
+                  <SvgIcon className={`aspect-square w-[1.3rem] ${activePath===tab.url ? "fill-white":""} group-hover:fill-purple-500`} name={tab.icon} />
+                  <span className={`ml-3 text-[0.9em] leading-7 ${activePath===tab.url ? "font-semibold":""}`}>{tab.label}</span>
                 </NavLink>
               </li>)
             )}
