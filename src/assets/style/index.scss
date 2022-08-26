@@ -9,3 +9,7 @@ select,
 textarea {
   outline: none;
 }
+
+a[href]:hover {
+  text-decoration: underline;
+}

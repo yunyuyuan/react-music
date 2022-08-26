@@ -8,8 +8,10 @@
     }
   }
 
-  table {
+  .rm-table {
     min-width: 800px;
+    max-width: 1000px;
+    margin: auto;
   }
 
   tbody {

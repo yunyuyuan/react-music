@@ -1,0 +1,47 @@
+@tailwind components;
+
+@layer components {
+  .rm-table {
+    @apply relative border-slate-300 border border-solid rounded overflow-hidden;
+
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+
+      @apply w-full mx-auto overflow-hidden;
+
+      th {
+        @apply text-left bg-gray-200 p-3 text-gray-600 font-normal text-sm;
+      }
+
+      tbody {
+        @apply overflow-y-auto;
+
+        tr {
+          @apply odd:bg-slate-50 even:bg-white;
+        }
+      }
+
+      td {
+        @apply border-slate-100 border-solid border-b py-1 px-3;
+      }
+    }
+
+    &-empty,
+    &-loading {
+      @apply flex items-center justify-center;
+    }
+
+    &-empty {
+      @apply bg-white h-[20rem];
+    }
+
+    &-loading {
+      @apply absolute bottom-0 left-0 h-full w-full bg-white/80;
+
+      svg {
+        @apply square-10;
+      }
+    }
+  }
+}

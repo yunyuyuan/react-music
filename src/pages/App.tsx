@@ -2,7 +2,7 @@ import "./App.scss";
 
 import { useAtom } from "jotai";
 import { useEffect } from "react";
-import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 
 import Player from "~/components/Player";
 import SideBar from "~/components/sidebar";
@@ -10,12 +10,15 @@ import Search from "~/pages/search";
 import Settings from "~/pages/settings";
 import { activeRoute } from "~/states";
 
+import SongDetail from "./song-detail";
+
 const Main = () => {
   const location = useLocation();
   const [, setActiveRoute] = useAtom(activeRoute);
   useEffect(() => {
     setActiveRoute(location.pathname);
   }, [location]);
+
   return (
     <>
       <SideBar />
@@ -25,6 +28,7 @@ const Main = () => {
             <Route index element={<h1>Hello World</h1>} />
             <Route path="search" element={<Search />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="song" element={<SongDetail />} />
           </Route>
         </Routes>
         <Player />
@@ -35,8 +39,8 @@ const Main = () => {
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Main />
-    </HashRouter>
+    </BrowserRouter>
   );
 }

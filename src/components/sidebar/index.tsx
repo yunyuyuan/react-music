@@ -8,7 +8,10 @@ import { activeRoute } from "~/states";
 
 import SvgIcon from "../SvgIcon";
 
-type MenuItem = { category: string, tabs: readonly { label: string, url: string, icon: string }[] };
+type MenuItem = {
+  readonly category: string;
+  tabs: readonly { label: string; url: string; icon: string }[];
+};
 const menuItems: readonly MenuItem[] = [
   {
     category: "探索",
@@ -16,18 +19,19 @@ const menuItems: readonly MenuItem[] = [
       {
         label: "搜索",
         url: "/search",
-        icon: "search"
-      }, 
+        icon: "search",
+      },
       {
         label: "推荐",
         url: "/recommend",
-        icon: "thumbup"
-      }, {
+        icon: "thumbup",
+      },
+      {
         label: "排行榜",
         url: "/top",
-        icon: "rate"
-      }
-    ]
+        icon: "rate",
+      },
+    ],
   },
   {
     category: "我的",
@@ -35,13 +39,14 @@ const menuItems: readonly MenuItem[] = [
       {
         label: "喜欢",
         url: "/like",
-        icon: "love"
-      }, {
+        icon: "love",
+      },
+      {
         label: "最近",
         url: "/history",
-        icon: "history"
-      }
-    ]
+        icon: "history",
+      },
+    ],
   },
   {
     category: "歌单",
@@ -49,38 +54,49 @@ const menuItems: readonly MenuItem[] = [
       {
         label: "我的歌单",
         url: "/my-playlist",
-        icon: "album"
-      }, {
+        icon: "album",
+      },
+      {
         label: "收藏歌单",
         url: "/like-playlist",
-        icon: "album"
-      }
-    ]
-  }
+        icon: "album",
+      },
+    ],
+  },
 ] as const;
 
 export default function SideBar() {
-  const [active,] = useAtom(activeRoute);
+  const [active] = useAtom(activeRoute);
   const activePath = useMemo(() => {
     return active.replace(/^(\/[^/]*).*$/, "$1");
   }, [active]);
   return (
     <nav className="rm-sidebar fixed h-full bg-white">
-      {menuItems.map(item => (
+      {menuItems.map((item) => (
         <div key={item.category} className="">
           <p className="ml-3 pt-3.5 pb-2.5 text-base text-gray-400">{item.category}</p>
           <ul>
-            {item.tabs.map(tab => (
+            {item.tabs.map((tab) => (
               <li key={tab.url} className="px-1">
-                <NavLink 
-                  className={`group rm-transition relative my-0.5 flex items-center rounded-xl py-2 pl-5 text-base [&:not(.active)]:hover:text-purple-700
-                    ${activePath===tab.url ? "text-white": ""}`} 
-                  to={tab.url}>
-                  <SvgIcon className={`aspect-square w-[1.3rem] ${activePath===tab.url ? "fill-white":""} group-hover:fill-purple-500`} name={tab.icon} />
-                  <span className={`ml-3 text-[0.9em] leading-7 ${activePath===tab.url ? "font-semibold":""}`}>{tab.label}</span>
+                <NavLink
+                  className={`group rm-transition no-decoration relative my-0.5 flex items-center rounded-xl py-2 pl-5 text-base [&:not(.active)]:hover:text-purple-700
+                    ${activePath === tab.url ? "text-white" : ""}`}
+                  to={tab.url}
+                >
+                  <SvgIcon
+                    className={`square-[1.3rem] ${activePath === tab.url ? "fill-white" : ""}`}
+                    name={tab.icon}
+                  />
+                  <span
+                    className={`ml-3 text-[0.9em] leading-7 ${
+                      activePath === tab.url ? "font-semibold" : ""
+                    }`}
+                  >
+                    {tab.label}
+                  </span>
                 </NavLink>
-              </li>)
-            )}
+              </li>
+            ))}
           </ul>
         </div>
       ))}

@@ -5,6 +5,18 @@
   "rules": {
     "selector-class-pattern": null,
     "selector-id-pattern": null,
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "scss/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "tailwind",
+          "apply",
+          "variants",
+          "responsive",
+          "screen"
+        ]
+      }
+    ]
   }
 }

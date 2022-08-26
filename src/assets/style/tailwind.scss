@@ -2,36 +2,8 @@
   .rm-transition {
     transition: all 0.1s linear;
   }
-}
 
-// --------------- component ----------------------
-
-@layer components {
-  .rm-table {
-    table {
-      border-collapse: separate;
-      border-spacing: 0;
-
-      @apply mx-auto border-slate-300 overflow-hidden border border-solid rounded;
-
-      thead {
-      }
-
-      th {
-        @apply text-left bg-slate-300 p-3 text-gray-600 font-normal text-sm;
-      }
-
-      tbody {
-        @apply overflow-y-auto;
-
-        tr {
-          @apply odd:bg-slate-100;
-        }
-      }
-
-      td {
-        @apply border-slate-200 border-solid border-b py-1 px-3;
-      }
-    }
+  .no-decoration {
+    text-decoration: none !important;
   }
 }
