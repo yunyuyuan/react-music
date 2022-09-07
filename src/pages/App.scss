@@ -2,4 +2,5 @@
 
 .rm-main-container {
   padding-left: $sidebar-width;
+  height: calc(100% - #{$player-height});
 }

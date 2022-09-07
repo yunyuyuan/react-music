@@ -27,12 +27,10 @@ export default function Search() {
       url: `/search?keywords=${searchVal}&type=${selectedType}`,
     })
       .then((res) => {
+        console.log(res);
         if (!res.dirty) {
           setSearching(false);
-          const data = res.data;
-          if (data.code === 200) {
-            setResult(data.result);
-          }
+          setResult(res.data.result);
         }
       })
       .catch(() => {
@@ -74,7 +72,7 @@ export default function Search() {
           onChange={({ currentTarget }) => setSearchVal(currentTarget.value)}
           onKeyUp={({ key }) => key.toUpperCase() === "ENTER" && searchFn()}
         />
-        <span className="flex cursor-pointer items-center" onClick={() => searchFn()}>
+        <span className="flex cursor-pointer items-center" onClick={searchFn}>
           <SvgIcon
             name={searching ? "s-loading" : "search"}
             className={`mr-3 fill-slate-500 square-4 ${searchFocus && "fill-purple-500"}`}
@@ -138,7 +136,7 @@ const SongResult = ({
               <span className="text-xs text-gray-800">
                 {item.artists.map((a, idx) => (
                   <React.Fragment key={a.id}>
-                    <Link to={`singer?id=${a.id}`}>{a.name}</Link>
+                    <Link to={`/singer?id=${a.id}`}>{a.name}</Link>
                     {idx !== item.artists.length - 1 && "、"}
                   </React.Fragment>
                 ))}

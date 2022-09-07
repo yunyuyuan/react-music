@@ -1,0 +1,8 @@
+@import "../../assets/style/var";
+
+.rm-player {
+  width: calc(100% - #{$sidebar-width});
+  height: $player-height;
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+  z-index: $z-index-player;
+}

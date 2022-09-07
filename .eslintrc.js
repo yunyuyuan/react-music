@@ -26,6 +26,7 @@ module.exports = {
         argsIgnorePattern: "^_",
         varsIgnorePattern: "^_",
         caughtErrorsIgnorePattern: "^_",
+        destructuredArrayIgnorePattern: "^_",
       },
     ],
 
@@ -39,8 +40,10 @@ module.exports = {
     "simple-import-sort/exports": "error",
     "@typescript-eslint/no-non-null-assertion": 0,
     "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "react-hooks/exhaustive-deps": 0,
+    "react-hooks/rules-of-hooks": 0,
     "tailwindcss/no-custom-classname": 0,
   },
 };

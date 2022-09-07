@@ -1,10 +1,26 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-export async function myAxios(config: AxiosRequestConfig) {
-  return axios({
-    ...config,
-    url: `${import.meta.env.VITE_API_URL}${config.url}`,
-    method: config.method || "get",
+/**
+ * axios with hostname and response code checking.
+ */
+export function myAxios<T = any>(config: AxiosRequestConfig) {
+  return new Promise<T>((resolve, reject) => {
+    axios({
+      ...config,
+      url: `${import.meta.env.VITE_API_URL}${config.url}`,
+      method: config.method || "get",
+    })
+      .then((res) => {
+        const data = res.data;
+        if (data.code === 200) {
+          resolve(data);
+        } else {
+          reject(data);
+        }
+      })
+      .catch((e) => {
+        reject(e);
+      });
   });
 }
 
@@ -22,7 +38,7 @@ export function atomAxios() {
           if (now === timestamp) {
             resolve({
               dirty: false,
-              data: res.data,
+              data: res,
             });
           } else {
             throw new Error();

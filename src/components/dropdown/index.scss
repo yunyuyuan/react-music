@@ -1,0 +1,58 @@
+$duration: 0.15s;
+
+.dropdown {
+  &-inner {
+    opacity: 0;
+    display: none;
+    transition: all $duration linear;
+
+    &.right {
+      right: 0;
+    }
+
+    &.left {
+      left: 0;
+    }
+
+    &.top {
+      top: 0;
+      transform: translateY(-100%);
+    }
+
+    &.bottom {
+      bottom: 0;
+      transform: translateY(100%);
+    }
+  }
+
+  &-enter,
+  &-enter-done,
+  &-exit {
+    display: block;
+  }
+
+  &-enter {
+    opacity: 0;
+
+    &-active {
+      opacity: 1;
+    }
+
+    &-done {
+      opacity: 1;
+    }
+  }
+
+  &-exit {
+    opacity: 1;
+
+    &-active {
+      opacity: 0;
+    }
+
+    &-done {
+      opacity: 0;
+      display: none;
+    }
+  }
+}

@@ -1,10 +1,10 @@
 import "./index.scss";
 
-import { useAtom } from "jotai";
+import { useAtomValue } from "jotai";
 import { useMemo } from "react";
 import { NavLink } from "react-router-dom";
 
-import { activeRoute } from "~/states";
+import { activeRoute$ } from "~/states";
 
 import SvgIcon from "../SvgIcon";
 
@@ -66,10 +66,11 @@ const menuItems: readonly MenuItem[] = [
 ] as const;
 
 export default function SideBar() {
-  const [active] = useAtom(activeRoute);
+  const active = useAtomValue(activeRoute$);
   const activePath = useMemo(() => {
     return active.replace(/^(\/[^/]*).*$/, "$1");
   }, [active]);
+
   return (
     <nav className="rm-sidebar fixed h-full bg-white">
       {menuItems.map((item) => (

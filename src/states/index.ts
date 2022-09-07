@@ -3,4 +3,4 @@ import { atom } from "jotai";
 /**
  * current pathname
  */
-export const activeRoute = atom("");
+export const activeRoute$ = atom("");
